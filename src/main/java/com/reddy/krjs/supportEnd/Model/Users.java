@@ -18,7 +18,7 @@ public class Users {
 	String password;
 	@Transient
 	String confirmPassword;
-	boolean isEnable;
+	boolean enable;
 	
 	String role;
 
@@ -46,12 +46,14 @@ public class Users {
 		this.confirmPassword = confirmPassword;
 	}
 
+	
+
 	public boolean isEnable() {
-		return isEnable;
+		return enable;
 	}
 
-	public void setEnable(boolean isEnable) {
-		this.isEnable = isEnable;
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 
 	public String getRole() {
@@ -62,10 +64,12 @@ public class Users {
 		this.role = role;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", memberId=" + memberId + ", password=" + password + ", confirmPassword="
-				+ confirmPassword + ", isEnable=" + isEnable + ", role=" + role + "]";
+				+ confirmPassword + ", enable=" + enable + ", role=" + role + "]";
 	}
 
 	public String getMemberId() {

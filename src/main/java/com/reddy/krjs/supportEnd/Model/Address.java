@@ -8,8 +8,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [address=" + address + ", taluk=" + taluk + ", district=" + district + ", city=" + city
-				+ ", state=" + state + ", pincode=" + pincode + "]";
+		return address + " \n" + taluk + " taluk\n" + district +"-" + pincode ;
 	}
 
 	@Column(name = "address")

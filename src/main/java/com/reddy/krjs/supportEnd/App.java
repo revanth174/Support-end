@@ -1,7 +1,6 @@
 package com.reddy.krjs.supportEnd;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Random;
 
@@ -24,12 +23,12 @@ public class App {
 		context = new AnnotationConfigApplicationContext();
 		context.scan("com.reddy.krjs.supportEnd");
 		context.refresh();
-
-		/*Users user = new Users();
-		user.setMemberId("revanth");
+/*
+		Users user = new Users();
+		user.setMemberId("admin");
 		user.setPassword(new BCryptPasswordEncoder().encode("7396"));
 		user.setEnable(true);
-		user.setRole("USER");
+		user.setRole("ROLE_ADMIN");
 		MemberDao mdao = (MemberDao)context.getBean("memberdao");
 		mdao.insert_user(user);*/
 		
@@ -55,7 +54,8 @@ public class App {
 		  
 		  DetailsDup details = new DetailsDup(); details.setOccupation("farmer");
 		  details.setMaritalStatus(true); details.setNoc(0);
-		  details.setVemanaVani(true); details.setMember(m); details.setPhone(123456l);
+		  details.setVemanaVani(true); details.setMember(m); details.setPhone(9663723273l);
+		  details.setGmail("sharu1947@gmail.com");
 		  
 		  details.setQualification("degree");
 		  

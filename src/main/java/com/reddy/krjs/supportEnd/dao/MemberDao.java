@@ -18,7 +18,7 @@ public interface MemberDao {
 	List<Member> selectAll();
 	Member getById(String id);
 	MemberDup getById_registeredMember(String id);
-	List<MemberDup> selectAll_registeredMembers();
+	List<MemberDup> selectAll_registeredMembers(boolean a);
 	List<Member> getByApplicationNumber(String appno);
 	List<Member> getByMobileNumber(Long phone);
 	List<Member> getByDistrict(String dis);

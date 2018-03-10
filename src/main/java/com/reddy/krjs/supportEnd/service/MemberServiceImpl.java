@@ -64,8 +64,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.getByPincode(pincode);
 	}
 
-	public List<MemberDup> selectAll_registeredMembers() {
-		return memberdao.selectAll_registeredMembers();
+	public List<MemberDup> selectAll_registeredMembers(boolean a) {
+		return memberdao.selectAll_registeredMembers(a);
 	}
 
 	public Member getById(String id) {

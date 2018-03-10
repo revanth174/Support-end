@@ -108,8 +108,9 @@ public class MemberDaoImpl implements MemberDao {
 		return query.list();
 	}
 	
-	public List<MemberDup> selectAll_registeredMembers() {
-		Query<MemberDup> query =sessionFactory.getCurrentSession().createQuery("from MemberDup where isDeleted=0",MemberDup.class);
+	public List<MemberDup> selectAll_registeredMembers(boolean a) {
+		Query<MemberDup> query =sessionFactory.getCurrentSession().createQuery("from MemberDup where isDeleted=:a",MemberDup.class)
+				.setParameter("a", a);
 		return query.list();
 	}
 

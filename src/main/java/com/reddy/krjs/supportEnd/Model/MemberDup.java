@@ -1,6 +1,8 @@
 package com.reddy.krjs.supportEnd.Model;
 
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -11,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -62,13 +66,81 @@ public class MemberDup {
 
 	@Column(name = "member_name", length = 40)
 	private String name;
+	
+	private String fhname;
+	
+	private String pan;
+	private String aadhar;
+	private String voter;
+	
+	public String getPan() {
+		return pan;
+	}
 
-	@Column(name = "member_fname")
-	private String fname;
+	public void setPan(String pan) {
+		this.pan = pan;
+	}
+
+	public String getAadhar() {
+		return aadhar;
+	}
+
+	public void setAadhar(String aadhar) {
+		this.aadhar = aadhar;
+	}
+
+	public String getVoter() {
+		return voter;
+	}
+
+	public void setVoter(String voter) {
+		this.voter = voter;
+	}
+
+	public String getFhname() {
+		return fhname;
+	}
+
+	public void setFhname(String fhname) {
+		this.fhname = fhname;
+	}
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "member_dateofbirth")
-	private LocalDate dob;
+	private Date dob;
+	
+	
+	@Column(name = "ProposerName")
+	String proposerName;
+
+	String ProposerMemberId;
+
+	String proposerPhoneNumber;
+
+	public String getProposerName() {
+		return proposerName;
+	}
+
+	public void setProposerName(String proposerName) {
+		this.proposerName = proposerName;
+	}
+
+	public String getProposerMemberId() {
+		return ProposerMemberId;
+	}
+
+	public void setProposerMemberId(String proposerMemberId) {
+		ProposerMemberId = proposerMemberId;
+	}
+
+	public String getProposerPhoneNumber() {
+		return proposerPhoneNumber;
+	}
+
+	public void setProposerPhoneNumber(String proposerPhoneNumber) {
+		this.proposerPhoneNumber = proposerPhoneNumber;
+	}
 
 	// @OneToOne(mappedBy = "member",cascade = CascadeType.ALL)
 	@AttributeOverrides(value = {
@@ -156,21 +228,15 @@ public class MemberDup {
 		this.name = name;
 	}
 
-	public String getFname() {
-		return fname;
-	}
+	
 
 	
 
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
-	public LocalDate getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 
@@ -184,10 +250,13 @@ public class MemberDup {
 
 	@Override
 	public String toString() {
-		return "Member [appNo=" + appNo + ", memberId=" + memberId + ", type=" + type + ", title=" + title + ", gender="
-				+ gender + ", name=" + name + ", fname=" + fname + ", dob=" + dob + ", address=" + address
-				+ ", details=" + details + ", payment=" + payment + "]";
+		return "MemberDup [appNo=" + appNo + ", memberId=" + memberId + ", isDeleted=" + isDeleted + ", remarks="
+				+ remarks + ", type=" + type + ", title=" + title + ", gender=" + gender + ", name=" + name + ", dob=" + dob + ", proposerName=" + proposerName + ", ProposerMemberId=" + ProposerMemberId
+				+ ", proposerPhoneNumber=" + proposerPhoneNumber + ", address=" + address + ", details=" + details
+				+ ", payment=" + payment + "]";
 	}
+
+	
 
 	
 

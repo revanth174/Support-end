@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.reddy.krjs.supportEnd.Model.Member;
 import com.reddy.krjs.supportEnd.Model.MemberDup;
 import com.reddy.krjs.supportEnd.Model.Users;
+import com.reddy.krjs.supportEnd.Model.Ward;
 import com.reddy.krjs.supportEnd.dao.MemberDao;
 
 @Service("service")
@@ -40,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.getByApplicationNumber(appno);
 	}
 
-	public List<Member> getByMobileNumber(Long phone) {
+	public List<Member> getByMobileNumber(String phone) {
 		return memberdao.getByMobileNumber(phone);
 	}
 
@@ -60,7 +61,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.getByAlphabet(a);
 	}
 
-	public List<Member> getByPincode(int pincode) {
+	public List<Member> getByPincode(String pincode) {
 		return memberdao.getByPincode(pincode);
 	}
 
@@ -95,6 +96,52 @@ public class MemberServiceImpl implements MemberService {
 	public void insert(Users user) {
 		memberdao.insert_user(user);
 		
+	}
+
+	@Override
+	public Member checkMemberId(String memberid) {
+		return memberdao.getById(memberid);
+	
+	}
+
+	@Override
+	public void insert_code(String code, String id) {
+		memberdao.insert_code(code, id);
+		
+	}
+
+	@Override
+	public boolean checkCode(String code, String id) {
+		try {
+			memberdao.checkCode(code, id);
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public boolean changeUserPassword(String code, String id) {
+		try {
+			memberdao.changeUserPassword(code, id);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public void addWard(Ward ward) {
+		memberdao.addWard(ward);
+		
+		
+	}
+
+	@Override
+	public List<Ward> listOfWards() {
+		return memberdao.listOfWards();
 	}
 
 }

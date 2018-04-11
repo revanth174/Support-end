@@ -6,16 +6,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.reddy.krjs.supportEnd.Model.Address;
 import com.reddy.krjs.supportEnd.Model.Details;
+import com.reddy.krjs.supportEnd.Model.Emp;
+import com.reddy.krjs.supportEnd.Model.Gen_Seq;
 import com.reddy.krjs.supportEnd.Model.Member;
 import com.reddy.krjs.supportEnd.Model.MemberDup;
 import com.reddy.krjs.supportEnd.Model.Payment;
 import com.reddy.krjs.supportEnd.Model.Users;
+import com.reddy.krjs.supportEnd.Model.Ward;
 import com.reddy.krjs.supportEnd.dao.MemberDao;
+
 
 @Transactional
 @Repository("memberdao")
@@ -42,12 +47,20 @@ public class MemberDaoImpl implements MemberDao {
 		Member m = new Member();
 		m.setMemberId(member.getMemberId());
 		m.setAppNo(member.getAppNo());
-		m.setDob(member.getDob());
-		m.setFname(member.getFname());
+		//m.setDob(member.getDob());
+		
 		m.setGender(member.getGender());
 		m.setName(member.getName());
 		m.setTitle(member.getTitle());
 		m.setType(member.getType());
+		m.setFhname(member.getFhname());
+		m.setDob(member.getDob());
+		m.setProposerMemberId(member.getProposerMemberId());
+		m.setProposerName(member.getProposerName());
+		m.setProposerPhoneNumber(member.getProposerPhoneNumber());
+		m.setAadhar(member.getAadhar());
+		m.setPan(member.getPan());
+		m.setVoter(member.getVoter());
 		
 		
 		Details details = new Details();
@@ -66,16 +79,14 @@ public class MemberDaoImpl implements MemberDao {
 		payment.setApplicationDate(member.getPayment().getApplicationDate());
 		payment.setFeePaid(member.getPayment().getFeePaid());
 		payment.setMop(member.getPayment().getMop());
-		payment.setProposerMemberId(member.getPayment().getProposerMemberId());
-		payment.setProposerName(member.getPayment().getProposerName());
-		payment.setProposerPhoneNumber(member.getPayment().getProposerPhoneNumber());
+		
 		payment.setRefNo(member.getPayment().getRefNo());
 		payment.setMember(m);
 		
 		
 		Address address = new Address();
 		address.setAddress(member.getAddress().getAddress());
-		address.setCity(member.getAddress().getCity());
+		address.setVillage(member.getAddress().getVillage());
 		address.setDistrict(member.getAddress().getDistrict());
 		address.setPincode(member.getAddress().getPincode());
 		address.setState(member.getAddress().getState());
@@ -90,6 +101,14 @@ public class MemberDaoImpl implements MemberDao {
 	
 	public boolean insert(Member m) {
 		sessionFactory.getCurrentSession().save(m);
+		//sessionFactory.getCurrentSession().saveOrUpdate(m);
+		String id = m.getMemberId();
+		int n = Integer.parseInt(id.substring(1));
+		n++;
+		id = "M" + n;
+		Gen_Seq g = new Gen_Seq();
+		g.setNextVal(id);
+		sessionFactory.getCurrentSession().save(g);
 		return true;
 	}
 
@@ -121,7 +140,7 @@ public class MemberDaoImpl implements MemberDao {
 		return query.getResultList();
 	}
 
-	public List<Member> getByMobileNumber(Long phone) {
+	public List<Member> getByMobileNumber(String phone) {
 		String hql = "from Member mem LEFT JOIN FETCH mem.details where mem.details.phone = :phone";
 		Query<Member> q = sessionFactory.getCurrentSession().createQuery(hql, Member.class);
 		q.setParameter("phone", phone);
@@ -156,7 +175,7 @@ public class MemberDaoImpl implements MemberDao {
 		return q.list();
 	}
 
-	public List<Member> getByPincode(int pincode) {
+	public List<Member> getByPincode(String pincode) {
 		String hql = "from Member mem left join fetch mem.address where mem.address.pincode = :pincode";
 		Query<Member> q = sessionFactory.getCurrentSession().createQuery(hql, Member.class);
 		q.setParameter("pincode", pincode);
@@ -185,6 +204,53 @@ public class MemberDaoImpl implements MemberDao {
 	public void insert_user(Users user) {
 	
 		sessionFactory.getCurrentSession().save(user);
+		
+	}
+
+	@Override
+	public void insert_code(String  code, String id) {
+		Users user = sessionFactory.getCurrentSession().get(Users.class,id);
+		user.setCode(code);
+		sessionFactory.getCurrentSession().update(user);
+		
+	}
+	
+	
+	public boolean checkCode(String code,String id) {
+		Users user = sessionFactory.getCurrentSession().get(Users.class,id);
+		if(user.getCode().equals(code))
+			return true;
+		
+		else return false;
+	}
+	
+	public boolean changeUserPassword(String code,String id) {
+		Users user = sessionFactory.getCurrentSession().get(Users.class,id);
+		user.setPassword(new BCryptPasswordEncoder().encode(code));
+		sessionFactory.getCurrentSession().update(user);
+		return true;
+
+	}
+
+	@Override
+	public void addWard(Ward  ward) {
+		
+		sessionFactory.getCurrentSession().save(ward);
+	}
+
+	@Override
+	public List<Ward> listOfWards() {
+		String hql = "from Ward";
+		Query<Ward> wardlist = sessionFactory.getCurrentSession().createQuery(hql,Ward.class);
+		return wardlist.list();
+	}
+
+	/*public Gen_Seq getNextVal() {
+		return sessionFactory.getCurrentSession().get(Gen_Seq.class,1);
+	}*/
+	
+	public void insertEmp(Emp e) {
+		sessionFactory.getCurrentSession().save(e);
 		
 	}
 

@@ -11,9 +11,6 @@ import javax.persistence.Transient;
 public class Users {
 	
 	@Id
-	@GeneratedValue
-	int id;
-	
 	String memberId;
 	String password;
 	@Transient
@@ -21,14 +18,17 @@ public class Users {
 	boolean enable;
 	
 	String role;
-
-	public int getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
+
+	String code;
+
+	
 	
 	public String getPassword() {
 		return password;
@@ -68,7 +68,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", memberId=" + memberId + ", password=" + password + ", confirmPassword="
+		return "Users [ memberId=" + memberId + ", password=" + password + ", confirmPassword="
 				+ confirmPassword + ", enable=" + enable + ", role=" + role + "]";
 	}
 

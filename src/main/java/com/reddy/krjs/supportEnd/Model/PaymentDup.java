@@ -24,11 +24,12 @@ import org.hibernate.annotations.Parameter;
 @Table(catalog="dup",name="register_member_payment")
 public class PaymentDup {
 
+	
+
 	@Override
 	public String toString() {
-		return "Payment [memberid=" + memberid + ", feePaid=" + feePaid + ", mop=" + mop
-				+ ", refNo=" + refNo + ", proposerName=" + proposerName + ", ProposerMemberId=" + ProposerMemberId
-				+ ", proposerPhoneNumber=" + proposerPhoneNumber + ", ApplicationDate=" + ApplicationDate + "]";
+		return "PaymentDup [memberid=" + memberid + ", feePaid=" + feePaid + ", mop=" + mop + ", refNo=" + refNo
+				+ ", ApplicationDate=" + ApplicationDate + "]";
 	}
 
 	@Id
@@ -88,29 +89,6 @@ public class PaymentDup {
 		this.refNo = refNo;
 	}
 
-	public String getProposerName() {
-		return proposerName;
-	}
-
-	public void setProposerName(String proposerName) {
-		this.proposerName = proposerName;
-	}
-
-	public String getProposerMemberId() {
-		return ProposerMemberId;
-	}
-
-	public void setProposerMemberId(String proposerMemberId) {
-		ProposerMemberId = proposerMemberId;
-	}
-
-	public long getProposerPhoneNumber() {
-		return proposerPhoneNumber;
-	}
-
-	public void setProposerPhoneNumber(long proposerPhoneNumber) {
-		this.proposerPhoneNumber = proposerPhoneNumber;
-	}
 
 	public Date getApplicationDate() {
 		return ApplicationDate;
@@ -123,13 +101,7 @@ public class PaymentDup {
 	@Column(name = "refNo")
 	String refNo;
 
-	@Column(name = "ProposerName")
-	String proposerName;
-
-	String ProposerMemberId;
-
-	long proposerPhoneNumber;
-
+	
 	@Column(name = "ApplicationDate")
 	@Temporal(TemporalType.TIMESTAMP)
 	Date ApplicationDate = new Date();

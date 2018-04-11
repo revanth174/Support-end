@@ -8,27 +8,37 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return address + " \n" + taluk + " taluk\n" + district +"-" + pincode ;
+		return address + "  " + village + " " + taluk + " tq " + district + " dist \n" + state+ "-" + pincode ;
 	}
 
 	@Column(name = "address")
 	String address;
 
+	
+	public String getVillage() {
+		return village;
+	}
 
-	@Column(name = "taluk/city")
+	public void setVillage(String village) {
+		this.village = village;
+	}
+
+	
+
+	
 	String taluk;
 
 	@Column(name = "district")
 	String district;
 
-	@Column(name = "village/Area")
-	String city;
+	
+	String village;
 
 	@Column(name = "state")
 	String state;
 
 	@Column(name = "pincode")
-	int pincode;
+	String pincode;
 
 	public String getAddress() {
 		return address;
@@ -54,14 +64,7 @@ public class Address {
 		this.district = district;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
+	
 	public String getState() {
 		return state;
 	}
@@ -70,11 +73,11 @@ public class Address {
 		this.state = state;
 	}
 
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 }

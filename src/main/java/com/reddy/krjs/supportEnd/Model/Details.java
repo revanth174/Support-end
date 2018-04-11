@@ -73,11 +73,11 @@ public class Details {
 		this.vemanaVani = vemanaVani;
 	}
 
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -144,7 +144,7 @@ public class Details {
 	private Boolean vemanaVani;
 
 	@Column(name = "phone")
-	private long phone;
+	private String phone;
 
 	@Column(name = "gmail")
 	private String gmail;

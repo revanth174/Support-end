@@ -22,11 +22,12 @@ import org.hibernate.annotations.Parameter;
 @Entity
 public class Payment {
 
+	
+
 	@Override
 	public String toString() {
-		return "Payment [memberid=" + memberid + ", feePaid=" + feePaid + ", mop=" + mop
-				+ ", refNo=" + refNo + ", proposerName=" + proposerName + ", ProposerMemberId=" + ProposerMemberId
-				+ ", proposerPhoneNumber=" + proposerPhoneNumber + ", ApplicationDate=" + ApplicationDate + "]";
+		return "Payment [memberid=" + memberid + ", feePaid=" + feePaid + ", mop=" + mop + ", refNo=" + refNo
+				+ ", ApplicationDate=" + ApplicationDate + "]";
 	}
 
 	@Id
@@ -86,29 +87,7 @@ public class Payment {
 		this.refNo = refNo;
 	}
 
-	public String getProposerName() {
-		return proposerName;
-	}
-
-	public void setProposerName(String proposerName) {
-		this.proposerName = proposerName;
-	}
-
-	public String getProposerMemberId() {
-		return ProposerMemberId;
-	}
-
-	public void setProposerMemberId(String proposerMemberId) {
-		ProposerMemberId = proposerMemberId;
-	}
-
-	public long getProposerPhoneNumber() {
-		return proposerPhoneNumber;
-	}
-
-	public void setProposerPhoneNumber(long proposerPhoneNumber) {
-		this.proposerPhoneNumber = proposerPhoneNumber;
-	}
+	
 
 	public Date getApplicationDate() {
 		return ApplicationDate;
@@ -121,12 +100,7 @@ public class Payment {
 	@Column(name = "refNo")
 	String refNo;
 
-	@Column(name = "ProposerName")
-	String proposerName;
-
-	String ProposerMemberId;
-
-	long proposerPhoneNumber;
+	
 
 	@Column(name = "ApplicationDate")
 	@Temporal(TemporalType.TIMESTAMP)

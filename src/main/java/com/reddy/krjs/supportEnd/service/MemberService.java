@@ -16,6 +16,7 @@ public interface MemberService {
 	void update(Member m);
 	void update(MemberDup m);
 	List<Member> selectAll();
+	
 	Member getById(String id);
 	MemberDup getById_registeredMember(String id);
 	List<MemberDup> selectAll_registeredMembers(boolean a);

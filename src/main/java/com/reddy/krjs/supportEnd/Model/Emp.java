@@ -6,27 +6,28 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="EMPLOYEE")
 public class Emp {
 	
 	@Id
-	@GenericGenerator(name = "sequence_emp_id", strategy = "com.reddy.krjs.supportEnd.Model.EmployeeIdGenerator")
-	@GeneratedValue(generator = "sequence_emp_id")  
+//	@GeneratedValue(generator = "SequenceIdGenerator")
+//	@SequenceGenerator(name = "SequenceIdGenerator", 
+//					    sequenceName = "SEQ_ID_GEN", initialValue = 100, 
+//					    allocationSize = 1)
 	@Column(name="employee_id")
-	private String employeeId;
+	private int employeeId;
 
 	@Column(name="firstname")
 	private String firstname;
 
-	public String getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 

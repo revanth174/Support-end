@@ -9,8 +9,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -206,11 +208,18 @@ public class Member {
 				+ ", address=" + address + ", details=" + details + ", payment=" + payment + "]";
 	}*/
 	
-	@Column(name = "app_no", unique = true)
-	private String appNo;
-
+	
 	@Id
-	private String memberId;
+	@GeneratedValue(generator = "SequenceIdGenerator")
+	@SequenceGenerator(name = "SequenceIdGenerator", 
+					    sequenceName = "SEQ_ID_GEN", initialValue = 100, 
+					    allocationSize = 1)
+	@Column(name="member_id")
+	private int memberId;
+	
+	@Column(name = "app_no", unique = true)
+	private int appNo;
+
 
 	
 	private String pan;
@@ -337,19 +346,19 @@ public class Member {
 	
 	
 
-	public String getAppNo() {
+	public int getAppNo() {
 		return appNo;
 	}
 
-	public void setAppNo(String appNo) {
+	public void setAppNo(int appNo) {
 		this.appNo = appNo;
 	}
 
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 

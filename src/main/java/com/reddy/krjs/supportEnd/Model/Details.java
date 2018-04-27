@@ -23,13 +23,13 @@ public class Details {
 	@GenericGenerator(name = "gen", strategy = "foreign", parameters = {
 			@Parameter(name = "property", value = "member") })
 	@Column(name = "mem_id")
-	private String memberid;
+	private int memberid;
 
-	public String getMemberid() {
+	public int getMemberid() {
 		return memberid;
 	}
 
-	public void setMemberid(String memberid) {
+	public void setMemberid(int memberid) {
 		this.memberid = memberid;
 	}
 

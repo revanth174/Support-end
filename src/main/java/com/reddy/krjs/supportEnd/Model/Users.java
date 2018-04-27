@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 public class Users {
 	
 	@Id
-	String memberId;
+	int memberId;
 	String password;
 	@Transient
 	String confirmPassword;
@@ -72,11 +72,11 @@ public class Users {
 				+ confirmPassword + ", enable=" + enable + ", role=" + role + "]";
 	}
 
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 

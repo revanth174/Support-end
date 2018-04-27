@@ -37,7 +37,7 @@ public class PaymentDup {
 	@GenericGenerator(name = "gen", strategy = "foreign", parameters = {
 			@Parameter(name = "property", value = "member") })
 	@Column(name = "member_id")
-	String memberid;
+	int memberid;
 
 	@OneToOne
 	@PrimaryKeyJoinColumn
@@ -57,11 +57,11 @@ public class PaymentDup {
 	@Column(name = "ModeOfPayment")
 	String mop;
 
-	public String getMemberid() {
+	public int getMemberid() {
 		return memberid;
 	}
 
-	public void setMemberid(String memberid) {
+	public void setMemberid(int memberid) {
 		this.memberid = memberid;
 	}
 

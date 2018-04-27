@@ -10,8 +10,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,14 +30,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(catalog="dup",name="registered_Member")
 public class MemberDup {
 
+	@Id
+	@Column(name="employee_id")
+	int memberId;
 
 	@Column(name = "app_no", unique = true)
-	private String appNo;
+	private int appNo;
 
-	@Id
-	private String memberId;
-
-	
 	private boolean isDeleted;
 	
 	public boolean isDeleted() {
@@ -180,19 +181,19 @@ public class MemberDup {
 	
 	
 
-	public String getAppNo() {
+	public int getAppNo() {
 		return appNo;
 	}
 
-	public void setAppNo(String appNo) {
+	public void setAppNo(int appNo) {
 		this.appNo = appNo;
 	}
 
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 

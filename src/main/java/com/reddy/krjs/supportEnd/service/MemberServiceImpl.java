@@ -1,5 +1,6 @@
 package com.reddy.krjs.supportEnd.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao memberdao;
 	
 	
-	public void insert(Member m) {
-		memberdao.insert(m);
+	public int insert(Member m) {
+		return memberdao.insert(m);
 		
 	}
 
@@ -37,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.selectAll();
 	}
 
-	public List<Member> getByApplicationNumber(String appno) {
+	public List<Member> getByApplicationNumber(int appno) {
 		return memberdao.getByApplicationNumber(appno);
 	}
 
@@ -69,17 +70,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.selectAll_registeredMembers(a);
 	}
 
-	public Member getById(String id) {
+	public Member getById(int id) {
 		return memberdao.getById(id);
 		
 	}
 
-	public void insertAndDelete(MemberDup m) {
-		memberdao.insertAndDelete(m);
+	public int insertAndDelete(MemberDup m) {
+		return memberdao.insertAndDelete(m);
 		
 	}
 
-	public MemberDup getById_registeredMember(String id) {
+	public MemberDup getById_registeredMember(int id) {
 		return memberdao.getById_registeredMember(id);
 	}
 
@@ -99,19 +100,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member checkMemberId(String memberid) {
+	public Member checkMemberId(int memberid) {
 		return memberdao.getById(memberid);
 	
 	}
 
 	@Override
-	public void insert_code(String code, String id) {
+	public void insert_code(String code, int id) {
 		memberdao.insert_code(code, id);
 		
 	}
 
 	@Override
-	public boolean checkCode(String code, String id) {
+	public boolean checkCode(String code, int id) {
 		try {
 			memberdao.checkCode(code, id);
 			return true;
@@ -122,7 +123,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean changeUserPassword(String code, String id) {
+	public boolean changeUserPassword(String code, int id) {
 		try {
 			memberdao.changeUserPassword(code, id);
 			return true;
@@ -143,5 +144,29 @@ public class MemberServiceImpl implements MemberService {
 	public List<Ward> listOfWards() {
 		return memberdao.listOfWards();
 	}
+
+
+	public boolean checkRefNo(String refno) {
+		// TODO Auto-generated method stub
+		return memberdao.checkRefNo(refno);
+	}
+
+	
+	public List<Integer> getAdmins() {
+		return memberdao.getAdmins();
+	}
+
+	
+	public HashMap<Integer, String> getIdAndName(Integer mid) {
+		return memberdao.getIdAndName(mid);
+		
+	}
+
+	@Override
+	public void insert_user(Users user) {
+		memberdao.insert_user(user);
+	}
+	
+	
 
 }
